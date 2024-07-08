@@ -175,10 +175,10 @@ console.log(divCard)
 
 for(let i = 0 ; i < frutas.length; i++){
 
+    console.log(frutas[i]);
+    let frutaIndividual = cardEstructure(frutas[i].nombre,frutas[i].foto,frutas[i].descripcion);
 
-    let arrayFrutas = cardEstructure(frutas[i].nombre,frutas[i].foto,frutas[i].descripcion);
-
-    divCard.innerHTML += arrayFrutas;
+    divCard.innerHTML += frutaIndividual; // es lo mismo que hacer divcard.innerHTML = divCard.innerHTML + frutaIndividual.
 
 
 }
@@ -197,120 +197,102 @@ for(let i = 0 ; i < frutas.length; i++){
     console.log(ultimoDivCreado);
 
 
+
+
+
     //10. Crear una función que reciba un array y devuelva una lista desordenada
     //utilizando nodos (createElement).
     //Cada elemento de la lista será el nombre de una fruta.
     //Para esta lista usar las frutas cuya propiedad "esDulce" sea true. 
 
 
-function listaDesordenada (nombre){
 
 
-    let cartas = `
+    //forma 1 :
+
+// function listaDesordenada (nombre){
+
+
+//     let lista = `
     
-        <li> ${nombre}</li>
-    `
+//         <li> ${nombre}</li>
+//     `
 
 
-    return cartas
-
-}
-
-let ul = document.createElement("ul");//creo la etiqueta ul
-ul.id = "ul-list"// le creo un id a la etiqueta ul
-
-console.log(ul);
-
-ultimoDivCreado.appendChild(ul)// coloco el ul con todos los li dentro del div con el idlista (es el ultimo div que creamos)
-
-
-for(let i = 0; i < frutas.length;i++){
-
-
-    if(frutas[i].esDulce == true){
-    let todasLasFrutas = listaDesordenada(frutas[i].nombre);
-    ul.innerHTML += todasLasFrutas;
-    }
-
-
-}
-
-//no forma parte del ejercicio:es para ver que elementos no deben estar dentro del ul 
-// for(let i = 0; i <= frutas.length;i++ ){
-// if(frutas[i].esDulce == false){
-// console.log(frutas[i].id,frutas[i].nombre,frutas[i].esDulce)
-
-// }
+//     return lista
 
 // }
 
 
 
-//INTENTO 2 :
-
-function listaDesordenadaa (nombre){
-
-    let lii = document.createElement("li");
-
-    lii.innerHTML = nombre
+// ultimoDivCreado.appendChild(ul)// coloco el ul con todos los li dentro del div con el idlista (es el ultimo div que creamos)
 
 
-    return lii;
-}
+// for(let i = 0; i < frutas.length;i++){
+
+
+//     if(frutas[i].esDulce == true){
+//     let todasLasFrutas = listaDesordenada(frutas[i].nombre);
+//     ul.innerHTML += todasLasFrutas;
+//     }
+
+
+// }
+
+// //no forma parte del ejercicio:es para ver que elementos no deben estar dentro del ul 
+// // for(let i = 0; i <= frutas.length;i++ ){
+// // if(frutas[i].esDulce == false){
+// // console.log(frutas[i].id,frutas[i].nombre,frutas[i].esDulce)
+
+// // }
+
+// // }
+
+
+//intento 2:
+
+    let ul = document.createElement("ul");//creo la etiqueta ul
+    ul.id = "ul-list"// le creo un id a la etiqueta ul
+    
+    console.log(ul);
+
+
+let frutasDulces = [];
+
+
+    for(let i = 0; i < frutas.length ; i++){
+
+
+            if(frutas[i].esDulce == true){
+
+                frutasDulces.push(frutas[i]);
+            }
+    }
+
+    
+    
+
+    function listaDesordenadaFrutas(frutasDulces){//frutasDulces es un array
 
 
 
-let ull = document.createElement("ul");
-ull.id = "ul-listtt";
-console.log(ull);
+        for(let i = 0 ; i < frutasDulces.length ; i++ ){//se itera sobre la lista filtrada de frutas dulces
 
-ultimoDivCreado.appendChild(ull)
+            let listItem =`
+            
+            <li> ${frutasDulces[i].nombre}</li>
+            ` 
 
+            ul.innerHTML += listItem;//cada list item se incorpora en ul
 
-for(let i = 0; i < frutas.length;i++){
+        }
 
-
-    if(frutas[i].esDulce == true){
-    let todasLasFrutass = listaDesordenadaa(frutas[i].nombre);
-    ull.appendChild(todasLasFrutass);
+        ultimoDivCreado.appendChild(ul) //toda la lista se mete en el ultimo div creado,// coloco el ul con todos los li dentro del div con el idlista (es el ultimo div que creamos)
     }
 
 
-}
+listaDesordenadaFrutas(frutasDulces)
 
-
-//INTENTO 3 :
-
-function listaDesordenadaaa (nombre){
-    let listaDeNombres = [];
-
-    let liii = document.createElement("li");
-
-    liii.innerHTML = nombre
-
-listaDeNombres.push("li");
-console.log(listaDeNombres)
-
-    return liii;
-}
-
-
-let ulll = document.createElement("ul");
-ulll.id = "ul-listttt";
-console.log(ulll);
-
-ultimoDivCreado.appendChild(ulll)
-
-for(let i = 0; i < frutas.length;i++){
-
-
-    if(frutas[i].esDulce == true){
-    let todasLasFrutasss = listaDesordenadaaa(frutas[i].nombre);
-    ulll.appendChild(todasLasFrutasss);
-    }
-
-
-}
 
 
 //11. Mostrar la lista de frutas dulces en el div "#lista". 
@@ -332,10 +314,3 @@ ul__list.classList.add("gap-10");
 ul__list.classList.add("text-lg");
 
 console.log(divListas);
-
-
-
-
-
-
-
